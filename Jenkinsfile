@@ -11,10 +11,10 @@ stages {
       steps {
           echo "Preparing workspace"
           sh ''' 
-          rm -rf  $WORKSPACE/devops-web-project
-          mkdir -p  $WORKSPACE/devops-web-project/
-          cp index.html about.html contact.html README.md $WORKSPACE/devops-web-project/
-         cp -r assets $WORKSPACE/devops-web-project/
+          rm -rf "$WORKSPACE/devops-web-project"
+          mkdir -p  "$WORKSPACE/devops-web-project/"
+          cp index.html about.html contact.html README.md "$WORKSPACE/devops-web-project/"
+         cp -r assets "$WORKSPACE/devops-web-project/"
           '''
          }
        }
