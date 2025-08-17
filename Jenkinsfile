@@ -11,8 +11,8 @@ stages {
       steps {
           echo "Preparing workspace"
           sh ''' 
-          mkdir -p /var/www/devops-web-project
-          cp -r * /var/www/devops-web-project/
+          mkdir -p $WORKSPACE/devops-web-project
+          cp -r * $WORKSPACE/devops-web-project/
           '''
          }
        }
@@ -21,7 +21,7 @@ stages {
             echo "Starting the web server on port 8085"
            sh '''
            fuser -k 8085/tcp || true 
-           nohup python3 -m http.server 8085 --directory /var/www/devops-web-project > /dev/null 2>&1 &
+           nohup python3 -m http.server 8085 --directory $WORKSPACE/devops-web-project > /dev/null 2>&1 &
             '''
             }
          }
