@@ -12,7 +12,7 @@ stages {
           echo "Preparing workspace"
           sh ''' 
           mkdir -p /var/www/devops-web-project
-          cp -r * /var/www/devops-web-project
+          cp -r * /var/www/devops-web-project/
           '''
          }
        }
