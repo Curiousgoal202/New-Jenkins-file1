@@ -1,0 +1,41 @@
+pipeline{
+ agent any 
+stages {
+   stage('Checkout Code'){
+     steps{
+           echo "Cloning repository from Github"
+           git branch:'master', url:'https://github.com/Curiousgoal202/New-Jenkins-file1.git'
+         }
+       }
+    stage('Build workspace'){
+      steps {
+          echo "Preparing workspace"
+          sh ''' 
+          mkdir -p /var/www/devops-web-project
+          cp -r * /var/www/devops-web-project
+          '''
+         }
+       }
+    stage('Run Web Server'){
+        steps {
+            echo "Starting the web server on port 8085"
+           sh '''
+           fuser -k 8085/tcp || true 
+           nohup python3 -m http.server 8085 --directory /var/www/devops-web-project > /dev/null 2>&1 &
+            '''
+            }
+         }
+  }
+    post {
+        success {
+              echo "website deployed successfully at http://54.183.178.164:8085"
+                 }
+       failure {
+             echo "Deployment failed, Check logs" 
+              }
+        }
+}
+  
+
+
+
