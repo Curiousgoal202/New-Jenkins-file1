@@ -24,6 +24,7 @@ stages {
            sh '''
            fuser -k 8085/tcp || true 
            nohup python3 -m http.server 8085 --directory $WORKSPACE/devops-web-project > /dev/null 2>&1 &
+           disown
             '''
             }
          }
